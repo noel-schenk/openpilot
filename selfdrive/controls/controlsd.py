@@ -70,6 +70,7 @@ class Controls:
     self.is_metric = params.get("IsMetric", encoding='utf8') == "1"
     self.is_ldw_enabled = params.get("IsLdwEnabled", encoding='utf8') == "1"
     internet_needed = params.get("Offroad_ConnectivityNeeded", encoding='utf8') is not None
+    internet_needed = False
     community_feature_toggle = params.get("CommunityFeaturesToggle", encoding='utf8') == "1"
     openpilot_enabled_toggle = params.get("OpenpilotEnabledToggle", encoding='utf8') == "1"
     passive = params.get("Passive", encoding='utf8') == "1" or \
@@ -153,7 +154,7 @@ class Controls:
 
     self.events.clear()
     self.events.add_from_msg(CS.events)
-    self.events.add_from_msg(self.sm['dMonitoringState'].events)
+    #self.events.add_from_msg(self.sm['dMonitoringState'].events)
 
     # Handle startup event
     if self.startup_event is not None:
@@ -199,14 +200,14 @@ class Controls:
       self.events.add(EventName.radarCommIssue)
     elif not self.sm.all_alive_and_valid():
       self.events.add(EventName.commIssue)
-    if not self.sm['pathPlan'].mpcSolutionValid:
-      self.events.add(EventName.plannerError)
-    if not self.sm['pathPlan'].sensorValid and os.getenv("NOSENSOR") is None:
-      self.events.add(EventName.sensorDataInvalid)
-    if not self.sm['pathPlan'].paramsValid:
-      self.events.add(EventName.vehicleModelInvalid)
-    if not self.sm['pathPlan'].posenetValid:
-      self.events.add(EventName.posenetInvalid)
+    # if not self.sm['pathPlan'].mpcSolutionValid:
+    #   self.events.add(EventName.plannerError)
+    # if not self.sm['pathPlan'].sensorValid and os.getenv("NOSENSOR") is None:
+    #   self.events.add(EventName.sensorDataInvalid)
+    # if not self.sm['pathPlan'].paramsValid:
+    #   self.events.add(EventName.vehicleModelInvalid)
+    # if not self.sm['pathPlan'].posenetValid:
+    #   self.events.add(EventName.posenetInvalid)
     if not self.sm['plan'].radarValid:
       self.events.add(EventName.radarFault)
     if self.sm['plan'].radarCanError:
