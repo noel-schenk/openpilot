@@ -273,18 +273,6 @@
         <source>Review</source>
         <translation>Überprüfen</translation>
     </message>
-    <message>
-        <source>Manually start OpenPilot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>IGNITION</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Should OpenPilot not start automatically you can start it here manually.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>DriverViewScene</name>
