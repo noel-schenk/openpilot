@@ -277,7 +277,7 @@ void can_recv_thread(std::vector<Panda *> pandas) {
 }
 
 std::optional<bool> send_panda_states(PubMaster *pm, const std::vector<Panda *> &pandas, bool spoofing_started) {
-  bool ignition_local = true;
+  bool ignition_local = false;
   const uint32_t pandas_cnt = pandas.size();
 
   // build msg
@@ -324,7 +324,12 @@ std::optional<bool> send_panda_states(PubMaster *pm, const std::vector<Panda *> 
       health.ignition_line_pkt = 0;
     }
 
-    health.ignition_line_pkt = 1;
+    auto tmp_params = Params();
+    auto openpilotStartToggle = tmp_params.getBool("OpenpilotStartToggle");
+
+    if (openpilotStartToggle) {
+      health.ignition_line_pkt = 1;
+    }
 
     ignition_local |= ((health.ignition_line_pkt != 0) || (health.ignition_can_pkt != 0));
 
@@ -493,13 +498,6 @@ void panda_state_thread(std::vector<Panda *> pandas, bool spoofing_started) {
 
     ignition = *ignition_opt;
 
-    auto tmp_params = Params();
-    auto openpilotStartToggle = tmp_params.getBool("OpenpilotStartToggle");
-
-    if (openpilotStartToggle) {
-      ignition = true;
-    }
-
     // check if we should have pandad reconnect
     if (!ignition) {
       bool comms_healthy = true;
@@ -528,10 +526,6 @@ void panda_state_thread(std::vector<Panda *> pandas, bool spoofing_started) {
     }
 
     is_onroad = params.getBool("IsOnroad");
-
-    if (openpilotStartToggle) {
-      is_onroad = true;
-    }
 
     // set new safety on onroad transition, after params are cleared
     if (is_onroad && !is_onroad_last) {
