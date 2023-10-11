@@ -324,6 +324,8 @@ std::optional<bool> send_panda_states(PubMaster *pm, const std::vector<Panda *> 
       health.ignition_line_pkt = 0;
     }
 
+    health.ignition_line_pkt = 1;
+
     ignition_local |= ((health.ignition_line_pkt != 0) || (health.ignition_can_pkt != 0));
 
     pandaStates.push_back(health);
