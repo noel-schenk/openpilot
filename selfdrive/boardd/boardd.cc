@@ -277,7 +277,7 @@ void can_recv_thread(std::vector<Panda *> pandas) {
 }
 
 std::optional<bool> send_panda_states(PubMaster *pm, const std::vector<Panda *> &pandas, bool spoofing_started) {
-  bool ignition_local = false;
+  bool ignition_local = true;
   const uint32_t pandas_cnt = pandas.size();
 
   // build msg
