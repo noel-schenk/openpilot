@@ -273,6 +273,18 @@
         <source>Review</source>
         <translation>مراجعة</translation>
     </message>
+    <message>
+        <source>Manually start OpenPilot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IGNITION</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Should OpenPilot not start automatically you can start it here manually.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DriverViewScene</name>
@@ -1122,6 +1134,14 @@ This may take up to a minute.</source>
     <message>
         <source>Enable the openpilot longitudinal control (alpha) toggle to allow Experimental mode.</source>
         <translation>تمكين التحكم الطولي من openpilot (ألفا) للسماح بالوضع التجريبي.</translation>
+    </message>
+    <message>
+        <source>Start OpenPilot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting OpenPilot is usually not necessary. Only use it if your ignition is not detected.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

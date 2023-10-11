@@ -27,6 +27,12 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
   // param, title, desc, icon
   std::vector<std::tuple<QString, QString, QString, QString>> toggle_defs{
     {
+      "OpenpilotStartToggle",
+      tr("Start OpenPilot"),
+      tr("Starting OpenPilot is usually not necessary. Only use it if your ignition is not detected."),
+      "../assets/offroad/icon_start_openpilot.png",
+    },
+    {
       "OpenpilotEnabledToggle",
       tr("Enable openpilot"),
       tr("Use the openpilot system for adaptive cruise control and lane keep driver assistance. Your attention is required at all times to use this feature. Changing this setting takes effect when the car is powered off."),
@@ -199,6 +205,11 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
   addItem(new LabelControl(tr("Serial"), params.get("HardwareSerial").c_str()));
 
   // offroad-only buttons
+
+  auto startBtn = new ButtonControl(tr("Manually start OpenPilot"), tr("IGNITION"),
+                                   tr("Should OpenPilot not start automatically you can start it here manually."));
+  connect(startBtn, &ButtonControl::clicked, [=]() {  });
+  addItem(startBtn);
 
   auto dcamBtn = new ButtonControl(tr("Driver Camera"), tr("PREVIEW"),
                                    tr("Preview the driver facing camera to ensure that driver monitoring has good visibility. (vehicle must be off)"));

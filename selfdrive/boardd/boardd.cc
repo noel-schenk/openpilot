@@ -491,6 +491,13 @@ void panda_state_thread(std::vector<Panda *> pandas, bool spoofing_started) {
 
     ignition = *ignition_opt;
 
+    auto tmp_params = Params();
+    auto openpilotStartToggle = tmp_params.getBool("OpenpilotStartToggle");
+
+    if (openpilotStartToggle) {
+      ignition = true;
+    }
+
     // check if we should have pandad reconnect
     if (!ignition) {
       bool comms_healthy = true;
