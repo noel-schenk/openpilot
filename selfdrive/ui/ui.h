@@ -53,6 +53,14 @@ struct Alert {
     const uint64_t controls_frame = sm.rcv_frame("controlsState");
 
     Alert alert = {};
+
+    auto tmp_params = Params();
+    auto openpilotStartToggle = tmp_params.getBool("OpenpilotStartToggle");
+
+    if (openpilotStartToggle) {
+      return alert;
+    }
+
     if (controls_frame >= started_frame) {  // Don't get old alert.
       alert = {cs.getAlertText1().cStr(), cs.getAlertText2().cStr(),
                cs.getAlertType().cStr(), cs.getAlertSize(),
