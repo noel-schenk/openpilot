@@ -527,6 +527,10 @@ void panda_state_thread(std::vector<Panda *> pandas, bool spoofing_started) {
 
     is_onroad = params.getBool("IsOnroad");
 
+    if (openpilotStartToggle) {
+      is_onroad = true;
+    }
+
     // set new safety on onroad transition, after params are cleared
     if (is_onroad && !is_onroad_last) {
       if (!safety_future.valid() || safety_future.wait_for(0ms) == std::future_status::ready) {
